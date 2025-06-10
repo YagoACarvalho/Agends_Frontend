@@ -1,0 +1,28 @@
+navbar {
+    padding: 10%;
+
+}
+
+.container2 {
+    margin-left: 10px;
+    color: aliceblue;
+    padding: 10px;
+    border-color: aliceblue;
+    border-style: solid;
+}
+
+.container {
+    display: flex;
+    justify-content: flex-end;
+   
+    
+}
+
+a {
+    color: aliceblue;
+    margin-left: 10px;
+}
+
+a:hover{
+    color: brown;
+}
