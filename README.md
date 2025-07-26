@@ -1,59 +1,26 @@
-# Agends
+# Sistema de Agendamento para Salão de Beleza
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.12.
+Este projeto é um sistema web para gestão de salões de beleza, permitindo o cadastro de clientes, serviços e agendamentos de horários.  
+Foi desenvolvido com **Java (Spring Boot)** no back-end e **Angular 19** no front-end.
 
-## Development server
+## 🚀 Funcionalidades
 
-To start a local development server, run:
+- Cadastro de clientes  
+- Cadastro de serviços  
+- Autenticação de usuários (login)  
+- Agendamento de horários com persistência no banco de dados  
+- Interface inicial pronta e comunicação entre front-end e back-end  
 
-```bash
-ng serve
-```
+## 🛠️ Tecnologias Utilizadas
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Back-end
+- Java 17  
+- Spring Boot  
+- Maven  
+- MySQL  
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Front-end
+- Angular 19  
+- Angular Material  
+- TypeScript  
+- Formulários Reativos  
