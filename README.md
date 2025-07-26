@@ -24,3 +24,13 @@ Foi desenvolvido com **Java (Spring Boot)** no back-end e **Angular 19** no fron
 - Angular Material  
 - TypeScript  
 - Formulários Reativos  
+
+
+## 📌 Status do Projeto
+
+⚠️ **Em desenvolvimento:**  
+Ainda faltam ajustes e novas funcionalidades que serão implementadas, como:  
+- Melhoria no design da interface (UX/UI)  
+- Criação de dashboards e relatórios  
+- Refinamento das validações  
+- Implementação de mais testes automatizados  
