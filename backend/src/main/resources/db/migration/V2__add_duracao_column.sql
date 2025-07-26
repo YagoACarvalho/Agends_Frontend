@@ -1,0 +1,1 @@
+ALTER TABLE procedimentos ADD COLUMN duracao INT NOT NULL DEFAULT 0;

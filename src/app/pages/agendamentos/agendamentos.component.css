@@ -1,0 +1,18 @@
+:host {
+    display: flex;
+    justify-content: center; /* centraliza horizontalmente */
+    align-items: flex-start; /* alinha no topo do container flex */
+    height: 100vh; /* ocupa a altura da tela */
+    padding-top: 15vh; /* empurra o conteúdo um pouco para baixo, aproximando do meio */
+    background: #f9f9f9; /* opcional, para destacar o formulário */
+  }
+  
+  .formulario {
+    width: 100%;
+    max-width: 450px; /* largura máxima do formulário */
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  

@@ -1,0 +1,29 @@
+/* Centraliza o form no meio da tela */
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* altura total da viewport */
+  }
+  
+  /* Estiliza o form */
+  .login-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Para os mat-form-field ocuparem toda a largura */
+  .full-width {
+    width: 100%;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
