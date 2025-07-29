@@ -16,17 +16,17 @@ export class AuthService {
     login(username: string, senha: string): Observable<LoginResponse> {
         return this.http.post<LoginResponse>(this.apiUrl, {username, senha}).pipe(
             tap(response => {
-                localStorage.setItem('token', response.token)
+                localStorage.setItem('tokenJWT', response.tokenJWT)
             })
         );
     }
 
     logout(){
-        localStorage.removeItem('token');
+        localStorage.removeItem('tokenJWT');
     }
 
     getToken(): string | null {
-        return localStorage.getItem('token');
+        return localStorage.getItem('tokenJWT');
     }
 
     isLoggedIn(): boolean {

@@ -3,19 +3,20 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, Validators, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { AgendamentoService } from '../../core/services/agendamento.service';
 import { Agendamento } from '../../core/models/agendamento.model';
 import { Procedimento } from '../../core/models/procedimento.model';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { FormsModule } from '@angular/forms';
 import dayjs from 'dayjs';
 
 @Component({
   selector: 'app-agendamentos',
   imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, 
-  MatDatepickerModule, MatNativeDateModule, MatSelectModule, MatOptionModule, MatButtonModule],
+  MatDatepickerModule, MatNativeDateModule, MatSelectModule, MatOptionModule, MatButtonModule, FormsModule],
   templateUrl: './agendamentos.component.html',
   styleUrls: ['./agendamentos.component.css']
 })
@@ -23,6 +24,7 @@ export class AgendamentosComponent implements OnInit {
    
   agendamentoForm!: FormGroup;
   procedimentos: Procedimento[] = [];
+
   
 
   constructor(

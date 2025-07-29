@@ -1,29 +1,21 @@
-/* Centraliza o form no meio da tela */
-:host {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* altura total da viewport */
-  }
-  
-  /* Estiliza o form */
-  .login-form {
-    width: 100%;
-    max-width: 400px;
-    padding: 2rem;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Para os mat-form-field ocuparem toda a largura */
-  .full-width {
-    width: 100%;
-  }
-  
-  .error-message {
-    color: red;
-    margin-top: 1rem;
-    text-align: center;
-  }
-  
+.login-form {
+  max-width: 400px;
+  margin: 6rem auto 2rem auto; /* distância do topo e centralizado */
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  transition: box-shadow 0.3s ease;
+}
+
+.login-form:hover {
+  box-shadow: 0 0 25px rgba(0,0,0,0.15);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.error-message {
+  font-weight: 600;
+}

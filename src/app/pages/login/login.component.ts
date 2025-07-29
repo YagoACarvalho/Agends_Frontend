@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
       this.authService.login(username!, senha!).subscribe({
         next: () => {
           this.loading = false;
-          this.router.navigate(['/agendamentos']); //página que redireciona após lógin
+          this.router.navigate(['/lista-agendamentos']); 
         },
       error: err => {
         this.loading = false;

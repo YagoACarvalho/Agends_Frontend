@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Agendamento } from '../models/agendamento.model';
 import { Procedimento } from '../models/procedimento.model';
+import { AgendamentoResponse } from '../models/agendamento-response.model';
 
 
 @Injectable({providedIn: 'root'})
@@ -18,8 +19,8 @@ export class AgendamentoService {
         return this.http.post<Agendamento>(this.agendamentosURL, agendamento);
     }
 
-    listarAgendamento(): Observable<Agendamento[]> {
-        return this.http.get<Agendamento[]>(this.agendamentosURL);
+    listarAgendamentos(): Observable<AgendamentoResponse> {
+        return this.http.get<AgendamentoResponse>(this.agendamentosURL);
     }
 
     excluirAgendamento(id: number): Observable<void> {
