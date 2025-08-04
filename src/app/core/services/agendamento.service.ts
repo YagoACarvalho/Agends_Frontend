@@ -11,6 +11,7 @@ export class AgendamentoService {
 
     private agendamentosURL = 'http://localhost:8080/agendamentos';
     private procedimentoURL = 'http://localhost:8080/procedimentos';
+    private marcarComoConcluidoURL = "http://localhost:8080/agendamentos/resolved";
 
 
     constructor(private http: HttpClient) {}
@@ -31,7 +32,15 @@ export class AgendamentoService {
         return this.http.post<Procedimento>(this.procedimentoURL, procedimento);
     }
 
-    listarProcedimento(): Observable<any> {
-        return this.http.get<any>(this.procedimentoURL)
+    listarProcedimento(): Observable<{ content: Procedimento[] }> {
+        return this.http.get<{content: Procedimento[]}>(this.procedimentoURL)
+    }
+
+    exluirProcedimento(id: number): Observable<any> {
+        return this.http.delete<void>(`${this.procedimentoURL}/${id}`);
+    }
+
+    atualizarAgendamento(id: number): Observable<any> {
+        return this.http.delete<Agendamento>(`${this.marcarComoConcluidoURL}/${id}`);
     }
 }

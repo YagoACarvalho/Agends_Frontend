@@ -2,6 +2,9 @@ package Agends.Agendamentos.Entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,4 +35,20 @@ public class Agendamento{
 
   private LocalDateTime dataHora;
 
+  @Enumerated(EnumType.STRING)
+  @Column(nullable = false)
+  private StatusAgendamento status;
+
+
+  public Agendamento(Long id, String nome, String numeroTelefone, Procedimento procedimento, LocalDateTime dataHora) {
+    this.nome = nome;
+    this.numeroTelefone = numeroTelefone;
+    this.procedimento = procedimento;
+    this.dataHora = dataHora;
+  }
+
+
+  public void atender() {
+    this.status = StatusAgendamento.ATENDIDO;
+  }
 }

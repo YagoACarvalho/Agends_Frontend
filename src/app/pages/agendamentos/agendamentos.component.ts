@@ -37,7 +37,7 @@ export class AgendamentosComponent implements OnInit {
 
     this.agendamentoForm = this.fb.group({
       nome: ['', Validators.required],
-      procedimentosId: ['', Validators.required],
+      procedimentoId: ['', Validators.required],
       dataHora: ['', Validators.required],
       hora: ['', Validators.required],
       numeroTelefone: ['', Validators.required]
@@ -49,7 +49,7 @@ export class AgendamentosComponent implements OnInit {
   carregarProcedimentos(): void {
     this.agendamentoService.listarProcedimento().subscribe({
       next: (response) => {
-        this.procedimentos = response.content || response;
+        this.procedimentos = response.content;
         console.log('Procedimentos carregados:', this.procedimentos);
       },
       error: (err) => console.error('Erro ao carregar procedimentos:', err)
@@ -60,13 +60,18 @@ export class AgendamentosComponent implements OnInit {
     
     if(this.agendamentoForm.valid)  {
       const data = dayjs(this.agendamentoForm.value.dataHora);
-      const [hora, minuto] = this.agendamentoForm.value.hora.split(':');
-      const dataHora = data.hour(hora).minute(minuto).second(0).format('YYYY-MM-DDTHH:mm:ss');
+      const horaValor: string = this.agendamentoForm.value.hora;
+      if (!horaValor || !horaValor.includes(':')) {
+        console.warn('Hora inválida');
+        return;
+      }
+      const [hora, minuto] = horaValor.split(':');
+      const dataHora = data.hour(Number(hora)).minute(Number(minuto)).second(0).format('YYYY-MM-DDTHH:mm:ss');
 
       
       const dadosParaEnviar: Agendamento = {
         nome: this.agendamentoForm.value.nome,
-        procedimentosId: this.agendamentoForm.value.procedimentosId,
+        procedimentoId: this.agendamentoForm.value.procedimentoId,
         numeroTelefone: this.agendamentoForm.value.numeroTelefone,
         dataHora: dataHora
       };

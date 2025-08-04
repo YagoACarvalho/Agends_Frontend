@@ -1,6 +1,7 @@
 package Agends.Agendamentos.service;
 
 import Agends.Agendamentos.Entity.Agendamento;
+import Agends.Agendamentos.Entity.StatusAgendamento;
 import Agends.Agendamentos.dto.AgendamentosRequest;
 import Agends.Agendamentos.dto.AgendamentoResponse;
 import Agends.Agendamentos.infra.validadorDeErros.ValidacaoException;
@@ -26,38 +27,57 @@ public class AgendamentoService {
   @Autowired
   private List<ValidadorAgendamento> validadores;
 
-public AgendamentoResponse agendar(AgendamentosRequest dadosAgendamentos) {
+  public AgendamentoResponse agendar(AgendamentosRequest dadosAgendamentos) {
 
-  validadores.forEach(v -> v.validar(dadosAgendamentos));
+    validadores.forEach(v -> v.validar(dadosAgendamentos));
 
-  var procedimento = procedimentosRepository.findById(dadosAgendamentos.procedimentosId())
-    .orElseThrow(() -> new ValidacaoException("Procedimento não é válido!"));
+    Agendamento agendamento = novoAgendamento(dadosAgendamentos);
 
-  var agendamento = new Agendamento(
-    null,
-    dadosAgendamentos.nome(),
-    dadosAgendamentos.numeroTelefone(),
-    procedimento,
-    dadosAgendamentos.dataHora()
-  );
+    agendamentoRepository.save(agendamento);
 
-  agendamentoRepository.save(agendamento);
-
-  return  new AgendamentoResponse(agendamento);
-}
+    return new AgendamentoResponse(agendamento);
+  }
 
 
+  public Page<AgendamentoResponse> listar(Pageable pageable) {
+    var page = agendamentoRepository.findAll(pageable);
+    return page.map(AgendamentoResponse::new);
+  }
 
-public Page<AgendamentoResponse> listar(Pageable pageable){
-  var page = agendamentoRepository.findAll(pageable);
-  return page.map(AgendamentoResponse::new);
-}
-
-public void deletarAgendamento(long id) {
-  var agendamento = agendamentoRepository.findById(id)
-    .orElseThrow(() -> new ValidacaoException("Agendamento não encontrado!"));
-  agendamentoRepository.delete(agendamento);
-}
+  public void deletarAgendamento(long id) {
+    var agendamento = agendamentoRepository.findById(id)
+      .orElseThrow(() -> new ValidacaoException("Agendamento não encontrado!"));
+    agendamentoRepository.delete(agendamento);
+  }
 
 
+  public void marcarComoAtendido(Long id) {
+    var agendamento = procurarAgendamentoId(id);
+    agendamento.atender();
+  }
+
+
+  //Métodos auxiliares
+
+
+  private Agendamento novoAgendamento(AgendamentosRequest dto) {
+    var procedimento = procedimentosRepository.findById(dto.procedimentoId())
+      .orElseThrow(() -> new ValidacaoException("Procedimento não é válido!"));
+
+    var agendamento = new Agendamento(
+      null,
+      dto.nome(),
+      dto.numeroTelefone(),
+      procedimento,
+      dto.dataHora()
+    );
+    return agendamento;
+  }
+
+
+  private Agendamento procurarAgendamentoId(Long id) {
+    Agendamento agendamento = agendamentoRepository.findById(id)
+      .orElseThrow(() -> new ValidacaoException("Agendamento não encontrado"));
+    return agendamento;
+  }
 }

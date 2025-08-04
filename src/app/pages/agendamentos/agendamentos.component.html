@@ -14,7 +14,7 @@
     <div class="col-md-6">
       <mat-form-field appearance="fill" class="w-100">
         <mat-label>Serviço</mat-label>
-        <mat-select formControlName="procedimentosId">
+        <mat-select formControlName="procedimentoId">
           <mat-option value="">Selecione um procedimento</mat-option>
           <mat-option *ngFor="let proc of procedimentos" [value]="proc.id">
             {{ proc.servico }}
@@ -48,7 +48,7 @@
 
     <div class="col-12 text-center mt-3">
       <button mat-raised-button color="primary" type="submit" class="px-5 py-2">
-        💾 Agendar
+        Agendar
       </button>
     </div>
   </div>

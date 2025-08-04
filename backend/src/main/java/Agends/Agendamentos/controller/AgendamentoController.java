@@ -44,4 +44,12 @@ public class AgendamentoController {
     agendamentoService.deletarAgendamento(id);
     return ResponseEntity.ok("Agendamento deletado com sucesso!");
   }
+
+  @DeleteMapping("/resolved/{id}")
+  @Transactional
+  public ResponseEntity<?> marcarComoAtendido(@PathVariable Long id){
+    agendamentoService.marcarComoAtendido(id);
+    return ResponseEntity.noContent().build();
+  }
+
 }

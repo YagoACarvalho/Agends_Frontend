@@ -2,32 +2,59 @@ import { Component, OnInit } from '@angular/core';
 import { AgendamentoService } from '../../core/services/agendamento.service';
 import { Agendamento } from '../../core/models/agendamento.model';
 import { CommonModule } from '@angular/common';
+import { Procedimento } from '../../core/models/procedimento.model';
 
 
 @Component({
   selector: 'app-lista-agendamentos',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './lista-agendamentos.component.html',
-  styleUrl: './lista-agendamentos.component.css'
+  styleUrls: ['./lista-agendamentos.component.css']
 })
 export class ListaAgendamentosComponent implements OnInit {
 
-  agendamentos: any[] = [];
+  agendamentos: Agendamento[] = [];
   loading = true;
   error = '';
+  procedimentosMap = new Map<number, string>();
 
   constructor(private agendamentoService: AgendamentoService) {}
 
-
   ngOnInit(): void {
+    this.agendamentoService.listarProcedimento().subscribe({
+      next: (response) => {
+        const procedimentos = response.content;
+        if(Array.isArray(procedimentos)) {
+          procedimentos.forEach(p => this.procedimentosMap.set(p.id, p.servico));
+          console.log('Procedimentos carregados no map:', this.procedimentosMap);
+        } else {
+          console.error('Procedimentos não veio como array:', procedimentos);
+        }
+        this.carregarAgendamentos();
+      },
+      error:() => {
+        this.error = 'Erro ao carregar procedimentos';
+        this.loading = false;
+      }
+    });
+  }
+
+  getNomeProcedimento(id: number | undefined): string {
+    if(!id) return 'Indefinido';
+    return this.procedimentosMap.get(Number(id)) ?? 'Desconhecido';
+    
+  }
+
+  carregarAgendamentos() {
+    this.loading = true;
     console.log('Componente inicializado'); 
     this.agendamentoService.listarAgendamentos().subscribe({
-      next:(data) => {
-        console.log('Agendamentos recebidos:', data);
-        this.agendamentos = data.content;
+      next: (data) => {
+      this.agendamentos = data.content || [];
+      console.log('Agendamentos carregados:', this.agendamentos);
         this.loading = false;
       },
-
       error: (err) => {
         this.error = 'Erro ao carregar agendamentos';
         this.loading = false;
@@ -35,4 +62,21 @@ export class ListaAgendamentosComponent implements OnInit {
     });
   }
 
+  marcarComoConcluido(id: number) {
+    this.agendamentoService.atualizarAgendamento(id).subscribe(() => {
+      const agendamento = this.agendamentos.find(a => a.id === id);
+      if (agendamento) {
+        agendamento.status = 'CONCLUÍDO';
+      }
+    });
+  }
+
+  deletarAgendamento(id: number) {
+    if (!id) return;
+    if (confirm('Tem certeza que deseja excluir este agendamento?')) {
+      this.agendamentoService.excluirAgendamento(id).subscribe(() => {
+        this.carregarAgendamentos();
+      });
+    }
+  }
 }

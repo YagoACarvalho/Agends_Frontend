@@ -14,7 +14,7 @@ public record AgendamentosRequest(
   @NotBlank
   String numeroTelefone,
   @NotNull
-  Long procedimentosId,
+  Long procedimentoId,
   @NotNull
   @Future(message = "A data do agendamento deve estar no futuro")
   LocalDateTime dataHora
