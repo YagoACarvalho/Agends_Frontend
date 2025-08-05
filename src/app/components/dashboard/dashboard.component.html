@@ -1,1 +1,25 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+    <aside class="sidebar" *ngIf="!isDashboardRoot">
+      <h2 class="logo">Meu Painel</h2>
+      <nav>
+        <ul>
+          <li><a routerLink="." routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}">Dashboard</a></li>
+          <li><a routerLink="lista-agendamentos" routerLinkActive="active">Agendamentos</a></li>
+          <li><a routerLink="/" routerLinkActive="active">Procedimentos</a></li>
+          <li><a routerLink="/" routerLinkActive="active">Usuários</a></li>
+          <li><a routerLink="/" (click)="authService.logout()" routerLinkActive="active">Sair</a></li>
+        </ul>
+      </nav>
+    </aside>
+  
+    <main class="main-content">
+      <header class="topbar">
+        <span>Bem-vindo, Usuário</span>
+      </header>
+  
+      <section class="content">
+        <router-outlet></router-outlet>
+      </section>
+    </main>
+  </div>
+  

@@ -40,7 +40,7 @@ export class AgendamentoService {
         return this.http.delete<void>(`${this.procedimentoURL}/${id}`);
     }
 
-    atualizarAgendamento(id: number): Observable<any> {
-        return this.http.delete<Agendamento>(`${this.marcarComoConcluidoURL}/${id}`);
+    atualizarAgendamento(id: number): Observable<Agendamento> {
+        return this.http.put<Agendamento>(`${this.marcarComoConcluidoURL}/${id}`, {});
     }
 }

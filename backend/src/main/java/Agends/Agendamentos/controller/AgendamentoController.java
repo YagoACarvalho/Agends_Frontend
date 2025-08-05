@@ -45,10 +45,10 @@ public class AgendamentoController {
     return ResponseEntity.ok("Agendamento deletado com sucesso!");
   }
 
-  @DeleteMapping("/resolved/{id}")
+  @PutMapping("/resolved/{id}")
   @Transactional
-  public ResponseEntity<?> marcarComoAtendido(@PathVariable Long id){
-    agendamentoService.marcarComoAtendido(id);
+  public ResponseEntity<AgendamentoResponse> marcarComoAtendido(@PathVariable Long id){
+   AgendamentoResponse atualizado = agendamentoService.marcarComoAtendido(id);
     return ResponseEntity.noContent().build();
   }
 

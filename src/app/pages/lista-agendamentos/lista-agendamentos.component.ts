@@ -63,10 +63,10 @@ export class ListaAgendamentosComponent implements OnInit {
   }
 
   marcarComoConcluido(id: number) {
-    this.agendamentoService.atualizarAgendamento(id).subscribe(() => {
+    this.agendamentoService.atualizarAgendamento(id).subscribe((atualizado) => {
       const agendamento = this.agendamentos.find(a => a.id === id);
-      if (agendamento) {
-        agendamento.status = 'CONCLUÍDO';
+      if (agendamento && atualizado) {
+        agendamento.status = atualizado.status;
       }
     });
   }

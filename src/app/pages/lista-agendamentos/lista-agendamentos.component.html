@@ -28,17 +28,18 @@
       <div>
         <span class="badge"
               [ngClass]="{
-                'bg-success': agendamento.status === 'CONCLUÍDO',
-                'bg-warning text-dark': agendamento.status !== 'CONCLUÍDO'
+                'bg-success': agendamento.status === 'ATENDIDO',
+                'bg-warning text-dark': agendamento.status === 'EM ABERTO',
+                'bg-secondary': agendamento.status !== 'EM ABERTO' && agendamento.status !== 'ATENDIDO'
               }">
-          {{ agendamento.status || 'PENDENTE' }}
+    {{ agendamento.status || 'PENDENTE' }}
         </span>
       </div>
 
       <div class="acoes mt-2 d-flex gap-2 justify-content-center">
         <button mat-raised-button color="primary"
                 (click)="marcarComoConcluido(agendamento.id!)"
-                [disabled]="agendamento.status === 'CONCLUÍDO'">
+                [disabled]="agendamento.status === 'ATENDIDO'">
           Concluir
         </button>
 

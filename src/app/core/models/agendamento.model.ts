@@ -6,6 +6,6 @@ export interface Agendamento {
     numeroTelefone: string;
     procedimentoId?: Procedimento;
     dataHora: string;
-    status?: "NAO_RESOLVIDO" | "CONCLUÍDO";
+    status?: string;
   }
   
