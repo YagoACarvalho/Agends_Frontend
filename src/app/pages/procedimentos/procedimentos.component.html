@@ -1,0 +1,36 @@
+<form (ngSubmit)="salvarProcedimento()" class="p-4 bg-light rounded shadow-sm mb-4">
+    <div class="mb-3">
+      <label for="servico" class="form-label">Serviço</label>
+      <input type="text" [(ngModel)]="procedimento.servico" name="servico" id="servico"
+             class="form-control" placeholder="Ex: Corte de cabelo" required>
+    </div>
+  
+    <div class="mb-3">
+      <label for="preco" class="form-label">Preço (R$)</label>
+      <input type="number" [(ngModel)]="procedimento.preco" name="preco" id="preco"
+             class="form-control" placeholder="Ex: 80" required>
+    </div>
+  
+    <div class="mb-3">
+      <label for="duracao" class="form-label">Duração (min)</label>
+      <input type="number" [(ngModel)]="procedimento.duracao" name="duracao" id="duracao"
+             class="form-control" placeholder="Ex: 45" required>
+    </div>
+  
+    <button type="submit" class="btn btn-primary w-100">
+      {{ procedimento.id ? 'Atualizar' : 'Cadastrar' }}
+    </button>
+  </form>
+  
+  <ul class="list-group">
+    <li *ngFor="let p of procedimentos" class="list-group-item d-flex justify-content-between align-items-center">
+      <div>
+        <strong>{{ p.servico }}</strong> - R$ {{ p.preco }} - {{ p.duracao }} min
+      </div>
+      <div>
+        <button class="btn btn-sm btn-outline-secondary me-2" (click)="editarProcedimento(p)">Editar</button>
+        <button class="btn btn-sm btn-outline-danger" (click)="removerProcedimento(p.id!)">Excluir</button>
+      </div>
+    </li>
+  </ul>
+  

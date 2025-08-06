@@ -1,27 +1,25 @@
+.card-agendamento {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  
+  max-width: 800px;
+  height: auto;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-.custom-item {
-  text-align: center;
-  gap: 1rem; 
-  flex-wrap: wrap; 
-}
-
-.custom-item > div {
-  flex: 1 1 100%;
-  margin-bottom: 0.5rem;
+ 
+  width: 100%;
 }
 
 @media (min-width: 768px) {
-  .custom-item > div {
-    flex: 0 0 auto; 
-    margin-bottom: 0;
+  .card-agendamento {
+    width: 90%;
   }
-}
-
-.acoes {
-  flex-basis: 100%;
-  margin-top: 0.5rem;
-}
-
-.acoes button {
-  min-width: 100px;
 }

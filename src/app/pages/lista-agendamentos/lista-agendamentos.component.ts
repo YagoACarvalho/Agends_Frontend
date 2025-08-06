@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AgendamentoService } from '../../core/services/agendamento.service';
 import { Agendamento } from '../../core/models/agendamento.model';
 import { CommonModule } from '@angular/common';
-import { Procedimento } from '../../core/models/procedimento.model';
+import { ProcedimentoResponse } from '../../core/models/procedimento.response';
+import { ProcedimentoService } from '../../core/services/procedimento.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class ListaAgendamentosComponent implements OnInit {
   error = '';
   procedimentosMap = new Map<number, string>();
 
-  constructor(private agendamentoService: AgendamentoService) {}
+  constructor(private agendamentoService: AgendamentoService, private procedimentoService: ProcedimentoService) {}
 
   ngOnInit(): void {
     this.agendamentoService.listarProcedimento().subscribe({
@@ -68,6 +69,8 @@ export class ListaAgendamentosComponent implements OnInit {
       if (agendamento && atualizado) {
         agendamento.status = atualizado.status;
       }
+
+      this.carregarAgendamentos();
     });
   }
 

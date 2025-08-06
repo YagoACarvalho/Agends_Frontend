@@ -37,8 +37,24 @@ public class ProcedimentoService {
   }
 
   public void deletarProcedimento(Long id) {
-    var procedimento = procedimentosRepository.findById(id)
-      .orElseThrow(() -> new ValidacaoException("Procedimento não encontrado!"));
+   var procedimento = procurarPorId(id);
     procedimentosRepository.delete(procedimento);
   }
+
+    public ProcedimentoResponse atualizarProcedimento(Long id) {
+    var procedimento = procurarPorId(id);
+    var procedimentoAtualizado = procedimentosRepository.save(procedimento);
+    return new ProcedimentoResponse(procedimentoAtualizado);
+    }
+
+
+    // Métod0s auxiliares
+
+
+  private Procedimento procurarPorId(Long id) {
+    return  procedimentosRepository.findById(id)
+      .orElseThrow(() -> new ValidacaoException("Procedimento não encontrado!"));
+  }
 }
+
+

@@ -7,7 +7,7 @@ import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { AgendamentoService } from '../../core/services/agendamento.service';
 import { Agendamento } from '../../core/models/agendamento.model';
-import { Procedimento } from '../../core/models/procedimento.model';
+import { ProcedimentoResponse } from '../../core/models/procedimento.response';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FormsModule } from '@angular/forms';
@@ -23,7 +23,7 @@ import dayjs from 'dayjs';
 export class AgendamentosComponent implements OnInit {
    
   agendamentoForm!: FormGroup;
-  procedimentos: Procedimento[] = [];
+  procedimentos: ProcedimentoResponse[] = [];
 
   
 

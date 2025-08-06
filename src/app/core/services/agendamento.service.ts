@@ -2,19 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Agendamento } from '../models/agendamento.model';
-import { Procedimento } from '../models/procedimento.model';
 import { AgendamentoResponse } from '../models/agendamento-response.model';
+import { ProcedimentoService } from './procedimento.service';
 
 
 @Injectable({providedIn: 'root'})
 export class AgendamentoService {
 
-    private agendamentosURL = 'http://localhost:8080/agendamentos';
-    private procedimentoURL = 'http://localhost:8080/procedimentos';
+    private agendamentosURL = 'http://localhost:8080/agendamentos'; 
     private marcarComoConcluidoURL = "http://localhost:8080/agendamentos/resolved";
 
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private procedimentoService: ProcedimentoService) {}
 
     criarAgendamento(agendamento: Agendamento): Observable<Agendamento> {
         return this.http.post<Agendamento>(this.agendamentosURL, agendamento);
@@ -28,16 +27,8 @@ export class AgendamentoService {
         return this.http.delete<void>(`${this.agendamentosURL}/${id}`)
     }
 
-    criarProcedimento(procedimento: Procedimento): Observable<Procedimento> {
-        return this.http.post<Procedimento>(this.procedimentoURL, procedimento);
-    }
-
-    listarProcedimento(): Observable<{ content: Procedimento[] }> {
-        return this.http.get<{content: Procedimento[]}>(this.procedimentoURL)
-    }
-
-    exluirProcedimento(id: number): Observable<any> {
-        return this.http.delete<void>(`${this.procedimentoURL}/${id}`);
+    listarProcedimento(): Observable<any> {
+        return this.procedimentoService.listarProcedimento()
     }
 
     atualizarAgendamento(id: number): Observable<Agendamento> {

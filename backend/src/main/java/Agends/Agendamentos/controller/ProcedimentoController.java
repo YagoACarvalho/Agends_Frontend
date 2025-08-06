@@ -42,7 +42,11 @@ public class ProcedimentoController {
     return ResponseEntity.ok("Procedimento deletado com sucesso!");
   }
 
-
+  @PutMapping("/{id}")
+  public ResponseEntity<ProcedimentoResponse> atualizarProcedimento(@PathVariable Long id, @RequestBody @Valid ProcedimentoRequest procedimentoRequest) {
+    procedimentoService.atualizarProcedimento(id);
+    return ResponseEntity.ok().build();
+  }
 
 
 }
