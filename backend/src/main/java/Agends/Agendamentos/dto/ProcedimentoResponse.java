@@ -6,12 +6,13 @@ public record ProcedimentoResponse(
 
   Long id,
   String servico,
-  Double preco
+  Double preco,
+  int duracao
 
 ) {
 
   public ProcedimentoResponse(Procedimento procedimento) {
-    this(procedimento.getId(), procedimento.getServico(), procedimento.getPreco());
+    this(procedimento.getId(), procedimento.getServico(), procedimento.getPreco(), procedimento.getDuracao());
   }
 
 }

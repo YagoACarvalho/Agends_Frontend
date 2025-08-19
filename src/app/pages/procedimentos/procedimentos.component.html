@@ -1,36 +1,121 @@
-<form (ngSubmit)="salvarProcedimento()" class="p-4 bg-light rounded shadow-sm mb-4">
-    <div class="mb-3">
-      <label for="servico" class="form-label">Serviço</label>
-      <input type="text" [(ngModel)]="procedimento.servico" name="servico" id="servico"
-             class="form-control" placeholder="Ex: Corte de cabelo" required>
-    </div>
+<div class="procedimentos-container">
   
-    <div class="mb-3">
-      <label for="preco" class="form-label">Preço (R$)</label>
-      <input type="number" [(ngModel)]="procedimento.preco" name="preco" id="preco"
-             class="form-control" placeholder="Ex: 80" required>
+  <form (ngSubmit)="salvarProcedimento()" class="procedimento-form">
+    <div class="form-header">
+      <h3 class="form-title">
+        {{ procedimento.id ? 'Editar Procedimento' : 'Novo Procedimento' }}
+      </h3>
     </div>
-  
-    <div class="mb-3">
-      <label for="duracao" class="form-label">Duração (min)</label>
-      <input type="number" [(ngModel)]="procedimento.duracao" name="duracao" id="duracao"
-             class="form-control" placeholder="Ex: 45" required>
+
+    <div class="form-body">
+      <div class="form-group">
+        <label for="servico" class="form-label">
+          <i></i>
+          Serviço
+        </label>
+        <input type="text" 
+               [(ngModel)]="procedimento.servico" 
+               name="servico" 
+               id="servico"
+               class="form-input" 
+               placeholder="Ex: Corte de cabelo, Manicure, Massagem..." 
+               required>
+      </div>
+    
+      <div class="form-row">
+        <div class="form-group">
+          <label for="preco" class="form-label">
+            <i></i>
+            Preço (R$)
+          </label>
+          <input type="number" 
+                 [(ngModel)]="procedimento.preco" 
+                 name="preco" 
+                 id="preco"
+                 class="form-input" 
+                 placeholder="0,00" 
+                 step="0.01"
+                 min="0"
+                 required>
+        </div>
+      
+        <div class="form-group">
+          <label for="duracao" class="form-label">
+            <i></i>
+            Duração (min)
+          </label>
+          <input type="number" 
+                 [(ngModel)]="procedimento.duracao" 
+                 name="duracao" 
+                 id="duracao"
+                 class="form-input" 
+                 placeholder="45" 
+                 min="1"
+                 required>
+        </div>
+      </div>
     </div>
-  
-    <button type="submit" class="btn btn-primary w-100">
-      {{ procedimento.id ? 'Atualizar' : 'Cadastrar' }}
-    </button>
+
+    <div class="form-footer">
+      <button type="submit" class="btn-primary">
+        <i></i>
+        {{ procedimento.id ? 'Atualizar Procedimento' : 'Cadastrar Procedimento' }}
+      </button>
+    </div>
   </form>
-  
-  <ul class="list-group">
-    <li *ngFor="let p of procedimentos" class="list-group-item d-flex justify-content-between align-items-center">
-      <div>
-        <strong>{{ p.servico }}</strong> - R$ {{ p.preco }} - {{ p.duracao }} min
+
+ 
+  <div class="procedimentos-list-container">
+    <div class="list-header">
+      <h4 class="list-title">Procedimentos Cadastrados</h4>
+      <span class="list-count">{{ procedimentos.length || 0 }} procedimento(s)</span>
+    </div>
+
+    <div class="procedimentos-list" *ngIf="procedimentos.length > 0; else noProcedimentos">
+      <div *ngFor="let p of procedimentos" class="procedimento-card">
+        
+        <div class="procedimento-info">
+          <div class="procedimento-nome">
+            <h5>{{ p.servico }}</h5>
+          </div>
+          
+          <div class="procedimento-detalhes">
+            <div class="detalhe-item">
+              <span class="detalhe-label">Preço:</span>
+              <span class="detalhe-valor preco">R$ {{ p.preco | number:'1.2-2' }}</span>
+            </div>
+            
+            <div class="detalhe-item">
+              <span class="detalhe-label">Duração:</span>
+              <span class="detalhe-valor duracao">{{ p.duracao }} min</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="procedimento-acoes">
+          <button class="btn-editar" 
+                  (click)="editarProcedimento(p)"
+                  title="Editar procedimento">
+            <i></i>
+            Editar
+          </button>
+          
+          <button class="btn-excluir" 
+                  (click)="removerProcedimento(p.id!)"
+                  title="Excluir procedimento">
+            <i></i>
+            Excluir
+          </button>
+        </div>
       </div>
-      <div>
-        <button class="btn btn-sm btn-outline-secondary me-2" (click)="editarProcedimento(p)">Editar</button>
-        <button class="btn btn-sm btn-outline-danger" (click)="removerProcedimento(p.id!)">Excluir</button>
+    </div>
+
+    <ng-template #noProcedimentos>
+      <div class="empty-state">
+        <div></div>
+        <h5>Nenhum procedimento cadastrado</h5>
+        <p>Cadastre seu primeiro procedimento usando o formulário acima.</p>
       </div>
-    </li>
-  </ul>
-  
+    </ng-template>
+  </div>
+</div>

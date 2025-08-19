@@ -48,7 +48,7 @@ export class ProcedimentosComponent implements OnInit{
     }
   }
 
-  editarProcedimento(p: ProcedimentoRequest) {
+  editarProcedimento(p: ProcedimentoResponse) {
     this.procedimento = {...p};
   }
 

@@ -44,7 +44,7 @@ public class ProcedimentoController {
 
   @PutMapping("/{id}")
   public ResponseEntity<ProcedimentoResponse> atualizarProcedimento(@PathVariable Long id, @RequestBody @Valid ProcedimentoRequest procedimentoRequest) {
-    procedimentoService.atualizarProcedimento(id);
+    procedimentoService.atualizarProcedimento(id, procedimentoRequest);
     return ResponseEntity.ok().build();
   }
 

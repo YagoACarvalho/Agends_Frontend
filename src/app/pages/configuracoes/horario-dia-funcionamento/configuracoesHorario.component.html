@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="config-card">
+      <h2 class="title">Horários de Funcionamento</h2>
+      
+      <form [formGroup]="form" class="horarios-form">
+        <div formArrayName="diasSemana" class="dias-container">
+          <div *ngFor="let dia of diasSemana.controls; let i = index" 
+               [formGroupName]="i" 
+               class="dia-item"
+               [class.inactive]="!dia.get('ativo')?.value">
+            
+            <div class="dia-header">
+              <label class="checkbox-container">
+                <input type="checkbox" formControlName="ativo" class="checkbox-input">
+                <span class="checkmark"></span>
+                <span class="dia-nome">{{ dia.get('nome')?.value }}</span>
+              </label>
+            </div>
+            
+            <div class="horarios-container">
+              <div class="horario-group">
+                <label class="horario-label">Abertura</label>
+                <input type="time" 
+                       formControlName="abertura" 
+                       class="time-input"
+                       [disabled]="!dia.get('ativo')?.value">
+              </div>
+              
+              <div class="horario-separator">até</div>
+              
+              <div class="horario-group">
+                <label class="horario-label">Fechamento</label>
+                <input type="time" 
+                       formControlName="fechamento" 
+                       class="time-input"
+                       [disabled]="!dia.get('ativo')?.value">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <button type="button" (click)="salvar()" class="save-button">
+          <span class="button-text">Salvar Configurações</span>
+        </button>
+      </form>
+    </div>
+  </div>

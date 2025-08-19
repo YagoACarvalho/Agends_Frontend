@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 
 public record ProcedimentoRequest(
 
+  Long id,
   @NotBlank
   String servico,
   @NotNull
@@ -17,7 +18,7 @@ public record ProcedimentoRequest(
 ) {
 
   public ProcedimentoRequest(Procedimento procedimento) {
-    this(procedimento.getServico(), procedimento.getPreco(), procedimento.getDuracao());
+    this(procedimento.getId(), procedimento.getServico(), procedimento.getPreco(), procedimento.getDuracao());
   }
 
 }

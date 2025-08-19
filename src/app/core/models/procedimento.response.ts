@@ -1,5 +1,5 @@
 export interface ProcedimentoResponse {
-    id?: number;
+    id: number;
     servico: string;
     preco: number;
     duracao: number;

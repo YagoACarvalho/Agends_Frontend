@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { LoginResponse } from '../models/login-response.model';
-import { L, T } from '@angular/cdk/keycodes';
+import { Router } from '@angular/router';
+
 
 
 @Injectable ({providedIn: 'root'})
@@ -11,7 +12,7 @@ export class AuthService {
     
     private apiUrl = 'http://localhost:8080/auth/login';
 
-    constructor( private http: HttpClient){}
+    constructor( private http: HttpClient, private router: Router){}
 
     login(username: string, senha: string): Observable<LoginResponse> {
         return this.http.post<LoginResponse>(this.apiUrl, {username, senha}).pipe(
@@ -23,6 +24,12 @@ export class AuthService {
 
     logout(){
         localStorage.removeItem('tokenJWT');
+        localStorage.removeItem('user');
+        sessionStorage.clear();
+
+        this.router.navigate(['/login']).then(() => {
+            window.location.reload();
+        })
     }
 
     getToken(): string | null {

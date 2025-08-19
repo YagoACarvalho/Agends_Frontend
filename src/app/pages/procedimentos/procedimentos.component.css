@@ -1,0 +1,386 @@
+/* Container principal */
+.procedimentos-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  /* ===== FORMULÁRIO ===== */
+  .procedimento-form {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 16px;
+    padding: 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .procedimento-form:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  }
+  
+  /* Header do formulário */
+  .form-header {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    color: white;
+    padding: 1.5rem 2rem;
+    margin: 0;
+  }
+  
+  .form-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Body do formulário */
+  .form-body {
+    padding: 2rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  
+  .form-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #374151;
+    font-size: 0.9rem;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background: white;
+  }
+  
+  .form-input:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  }
+  
+  .form-input::placeholder {
+    color: #9ca3af;
+  }
+  
+  /* Footer do formulário */
+  .form-footer {
+    padding: 1.5rem 2rem;
+    background: #f9fafb;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+  }
+  
+  /* Botões */
+  .btn-primary {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 180px;
+    justify-content: center;
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+  }
+  
+  .btn-secondary {
+    background: white;
+    color: #6b7280;
+    border: 1px solid #d1d5db;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .btn-secondary:hover {
+    background: #f3f4f6;
+    border-color: #9ca3af;
+  }
+  
+  /* ===== LISTA DE PROCEDIMENTOS ===== */
+  .procedimentos-list-container {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .list-header {
+    background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+    color: white;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .list-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  
+  .list-count {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  
+  /* Cards dos procedimentos */
+  .procedimentos-list {
+    padding: 0;
+  }
+  
+  .procedimento-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #f3f4f6;
+    transition: all 0.2s ease;
+  }
+  
+  .procedimento-card:hover {
+    background: #f9fafb;
+  }
+  
+  .procedimento-card:last-child {
+    border-bottom: none;
+  }
+  
+  .procedimento-info {
+    flex: 1;
+  }
+  
+  .procedimento-nome h5 {
+    margin: 0 0 0.5rem 0;
+    color: #1f2937;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  
+  .procedimento-detalhes {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .detalhe-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .detalhe-label {
+    font-size: 0.8rem;
+    color: #6b7280;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .detalhe-valor {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  
+  .preco {
+    color: #059669;
+  }
+  
+  .duracao {
+    color: #0ea5e9;
+  }
+  
+  /* Ações dos procedimentos */
+  .procedimento-acoes {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .btn-editar,
+  .btn-excluir {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .btn-editar {
+    background: #f0f9ff;
+    color: #0ea5e9;
+    border: 1px solid #bae6fd;
+  }
+  
+  .btn-editar:hover {
+    background: #0ea5e9;
+    color: white;
+    transform: translateY(-1px);
+  }
+  
+  .btn-excluir {
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+  }
+  
+  .btn-excluir:hover {
+    background: #dc2626;
+    color: white;
+    transform: translateY(-1px);
+  }
+  
+  /* Estado vazio */
+  .empty-state {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: #6b7280;
+  }
+  
+  .empty-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+  }
+  
+  .empty-state h5 {
+    margin: 0 0 0.5rem 0;
+    color: #374151;
+    font-weight: 600;
+  }
+  
+  .empty-state p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+  
+  /* Ícones (usando pseudo-elementos) */
+  .icon-service::before { content: "🔧"; margin-right: 0.25rem; }
+  .icon-money::before { content: "💰"; margin-right: 0.25rem; }
+  .icon-clock::before { content: "⏱️"; margin-right: 0.25rem; }
+  .icon-save::before { content: "💾"; margin-right: 0.25rem; }
+  .icon-edit::before { content: "✏️"; margin-right: 0.25rem; }
+  .icon-delete::before { content: "🗑️"; margin-right: 0.25rem; }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .procedimentos-container {
+      padding: 1rem;
+      gap: 1.5rem;
+    }
+    
+    .form-body {
+      padding: 1.5rem;
+    }
+    
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    .form-footer {
+      padding: 1rem 1.5rem;
+      flex-direction: column-reverse;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+      width: 100%;
+      justify-content: center;
+    }
+    
+    .list-header {
+      padding: 1rem 1.5rem;
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: center;
+    }
+    
+    .procedimento-card {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.5rem;
+    }
+    
+    .procedimento-detalhes {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .procedimento-acoes {
+      width: 100%;
+      justify-content: center;
+    }
+    
+    .btn-editar,
+    .btn-excluir {
+      flex: 1;
+      justify-content: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .procedimentos-container {
+      padding: 0.5rem;
+    }
+    
+    .form-header,
+    .list-header {
+      padding: 1rem;
+    }
+    
+    .form-body {
+      padding: 1rem;
+    }
+    
+    .procedimento-card {
+      padding: 1rem;
+    }
+    
+    .procedimento-detalhes {
+      flex-direction: row;
+      gap: 1.5rem;
+    }
+  }

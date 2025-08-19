@@ -41,8 +41,13 @@ public class ProcedimentoService {
     procedimentosRepository.delete(procedimento);
   }
 
-    public ProcedimentoResponse atualizarProcedimento(Long id) {
+    public ProcedimentoResponse atualizarProcedimento(Long id, ProcedimentoRequest procedimentoRequest) {
     var procedimento = procurarPorId(id);
+
+    procedimento.setServico(procedimentoRequest.servico());
+    procedimento.setPreco(procedimentoRequest.preco());
+    procedimento.setDuracao(procedimentoRequest.duracao());
+
     var procedimentoAtualizado = procedimentosRepository.save(procedimento);
     return new ProcedimentoResponse(procedimentoAtualizado);
     }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AgendamentoService } from '../../core/services/agendamento.service';
 import { Agendamento } from '../../core/models/agendamento.model';
 import { CommonModule } from '@angular/common';
-import { ProcedimentoResponse } from '../../core/models/procedimento.response';
 import { ProcedimentoService } from '../../core/services/procedimento.service';
 
 

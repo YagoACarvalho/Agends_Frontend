@@ -1,54 +1,55 @@
-<div class="d-flex justify-content-center">
-  <ul class="list-group w-100" style="max-width: 700px;">
-    <li *ngFor="let agendamento of agendamentos"
-        class="list-group-item d-flex flex-column flex-md-row justify-content-center align-items-center rounded custom-item"
-        style="
-          text-align: center;
-          gap: 1rem;
-          margin: 1rem auto;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* sombra escura */
-        ">
-
-      <div>
-        <strong>#{{ agendamento.id }}</strong> - 
-        <span class="text-muted">{{ agendamento.dataHora | date: 'short' }}</span>
+<div class="agendamentos-container">
+  <ul class="agendamentos-list">
+    <li *ngFor="let agendamento of agendamentos" class="agendamento-item">
+      
+      <div class="agendamento-header">
+        <div class="agendamento-id">
+          <strong>#{{ agendamento.id }}</strong>
+        </div>
+        <div class="agendamento-data">
+          <span class="data-texto">{{ agendamento.dataHora | date: 'short' }}</span>
+        </div>
       </div>
 
-      <div>
-        <span class="badge bg-secondary me-2">{{ agendamento.nome }}</span>
-        <span class="badge bg-info text-dark">{{ agendamento.numeroTelefone }}</span>
+      <div class="agendamento-info">
+        <div class="cliente-info">
+          <span class="badge badge-cliente">{{ agendamento.nome }}</span>
+          <span class="badge badge-telefone">{{ agendamento.numeroTelefone }}</span>
+        </div>
+        
+        <div class="procedimento-info">
+          <small class="procedimento-texto">
+            Procedimento: {{ agendamento.procedimentoId?.servico }}
+          </small>
+        </div>
       </div>
 
-      <div>
-        <small class="text-muted">
-          Procedimento: {{ agendamento.procedimentoId?.servico }}
-        </small>
-      </div>
-
-      <div>
-        <span class="badge"
+      <div class="agendamento-status">
+        <span class="badge status-badge"
               [ngClass]="{
-                'bg-success': agendamento.status === 'ATENDIDO',
-                'bg-warning text-dark': agendamento.status === 'EM ABERTO',
-                'bg-secondary': agendamento.status !== 'EM ABERTO' && agendamento.status !== 'ATENDIDO'
+                'status-atendido': agendamento.status === 'ATENDIDO',
+                'status-aberto': agendamento.status === 'EM ABERTO',
+                'status-pendente': agendamento.status !== 'EM ABERTO' && agendamento.status !== 'ATENDIDO'
               }">
-    {{ agendamento.status || 'PENDENTE' }}
+          {{ agendamento.status || 'PENDENTE' }}
         </span>
       </div>
 
-      <div class="acoes mt-2 d-flex gap-2 justify-content-center">
-        <button mat-raised-button color="bg-success"
+      <div class="agendamento-acoes">
+        <button mat-raised-button 
+                class="btn-concluir"
                 (click)="marcarComoConcluido(agendamento.id!)"
                 [disabled]="agendamento.status === 'ATENDIDO'">
           Concluir
         </button>
-
-        <button mat-raised-button color="warn"
+        
+        <button mat-raised-button 
+                class="btn-excluir"
                 (click)="deletarAgendamento(agendamento.id!)">
           Excluir
         </button>
       </div>
-
+      
     </li>
   </ul>
 </div>

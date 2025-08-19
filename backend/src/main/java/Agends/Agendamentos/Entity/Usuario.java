@@ -26,6 +26,10 @@ public class Usuario implements UserDetails {
   private String username;
   private String senha;
 
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "configuracao_id")
+  private Configuracao configuracao;
+
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {

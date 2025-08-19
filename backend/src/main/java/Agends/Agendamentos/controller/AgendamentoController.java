@@ -2,7 +2,6 @@ package Agends.Agendamentos.controller;
 
 import Agends.Agendamentos.dto.AgendamentoResponse;
 import Agends.Agendamentos.dto.AgendamentosRequest;
-import Agends.Agendamentos.infra.validadorDeErros.ValidacaoException;
 import Agends.Agendamentos.repository.AgendamentoRepository;
 import Agends.Agendamentos.service.AgendamentoService;
 import jakarta.validation.Valid;
