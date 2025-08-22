@@ -30,9 +30,13 @@ export const routes: Routes = [
         },
         {
             path: 'configuracoes',
-                loadComponent: () => import('./pages/configuracoes/horario-dia-funcionamento/configuracoesHorario.component').then(m => m.ConfiguracoesComponent)
+                loadComponent: () => import('./pages/configuracoes/configs-menu/configs-menu.component').then(m => m.ConfigsMenuComponent),
+        },
+        {
+            path:'config-horario-dia',
+                    loadComponent: () => import('./pages/configuracoes/horario-dia-funcionamento/configuracoesHorario.component').then(m => m.ConfiguracoesComponent)
         }
-        ]
+    ]
     },
     { path: '**', redirectTo: '' }
 ];

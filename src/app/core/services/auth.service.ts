@@ -23,16 +23,14 @@ export class AuthService {
     }
 
     logout(){
-        localStorage.removeItem('tokenJWT');
-        localStorage.removeItem('user');
-        sessionStorage.clear();
+        localStorage.clear();
 
         this.router.navigate(['/login']).then(() => {
             window.location.reload();
         })
     }
 
-    getToken(): string | null {
+    private getToken(): string | null {
         return localStorage.getItem('tokenJWT');
     }
 
